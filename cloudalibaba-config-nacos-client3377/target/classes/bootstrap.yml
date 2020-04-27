@@ -1,0 +1,46 @@
+# nacos 配置 注册中心
+server:
+  port: 3377
+
+spring:
+  application:
+    name: nacos-config-client
+  # 数据库配置项
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://192.168.1.9:3306/my_work?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+  # nacos，configuration
+  cloud:
+    nacos:
+      # 注册服务
+      discovery:
+        server-addr: 192.168.1.9:48848
+      # 配置中心
+      config:
+        server-addr: 192.168.1.9:48848
+        file-extension: yaml #指定yaml文件格式的配置
+    # 监听服务，实现服务的流量级别监控
+    sentinel:
+      transport:
+        # 配置sentinel dashboard地址
+        dashboard: 192.168.1.9:8080
+        # 默认端口8719，假如被占用会自动从从8719自增1扫描，直至找到可用端口
+        port: 8719
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+# ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+# nacos-config-client-dev.yaml
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cy.springcloud.entities             # 所有实体别名类
