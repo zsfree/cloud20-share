@@ -5,13 +5,17 @@ import com.cy.springcloud.entities.common.*;
 import com.cy.springcloud.service.AreaService;
 import com.cy.springcloud.service.ProvinceService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName ProvinceController
@@ -22,12 +26,16 @@ import java.util.List;
  **/
 @RestController
 @Slf4j
+@RefreshScope
 public class ProvinceController extends BaseController
 {
     @Resource
     ProvinceService provinceService;
     @Resource
     AreaService areaService;
+
+    @Value("${config.columns.province}")
+    protected String configColumns;
 
     /**
      * 删除数据
@@ -37,8 +45,14 @@ public class ProvinceController extends BaseController
     @PostMapping(value = "/province/fetchDelete")
     public CommonResult fetchDelete(@RequestBody(required=false) Province record)
     {
-        Integer result = provinceService.deleteByPrimaryKey(record.getId().intValue());
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try {
+            result = provinceService.deleteByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex) {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -49,8 +63,16 @@ public class ProvinceController extends BaseController
     @PostMapping(value = "/province/fetchAdd")
     public CommonResult fetchAdd(@RequestBody(required=false) Province record)
     {
-        Integer result = provinceService.insert(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = provinceService.insert(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -61,8 +83,17 @@ public class ProvinceController extends BaseController
     @PostMapping(value = "/province/fetchEdit")
     public CommonResult fetchEdit(@RequestBody(required=false) Province record)
     {
-        Integer result = provinceService.updateByPrimaryKey(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = provinceService.updateByPrimaryKey(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
+
     }
 
     /**
@@ -73,16 +104,24 @@ public class ProvinceController extends BaseController
     @PostMapping(value = "/province/fetchStatus")
     public CommonResult fetchStatus(@RequestBody(required=false) Province record)
     {
-        provinceService.updateStatusByPrimaryKey(record);
+        Integer result = 0;
         try
         {
-            record = provinceService.selectByPrimaryKey(record.getId().intValue());
+            result = provinceService.updateStatusByPrimaryKey(record);
+            if (result > 0)
+            {
+                record = provinceService.selectByPrimaryKey(record.getId().intValue());
+                return CommonResult.ok(record);
+            }
+            else
+            {
+                return CommonResult.fail(record);
+            }
         }
         catch (Exception ex)
         {
-            System.out.println("*******::"+ex.toString());
+            return CommonResult.ok(ex);
         }
-        return CommonResult.ok(record);
     }
 
     /**
@@ -104,30 +143,26 @@ public class ProvinceController extends BaseController
         {
             System.out.println("**********::" + ex.toString());
         }
-        TResult tResult = this.getListView(count, provinceList);
+        TResult tResult = this.getListView(count, provinceList, configColumns, this.wjData());
         return CommonResult.ok(tResult);
     }
 
     /**
-     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
-     * @param count
-     * @param results
+     * 外键数据
      * @return
      */
-    private TResult getListView(Integer count, List<Province> results) {
-        // 字段
-        List<TColumn> tColumnList = this.getColumn();
-
-        // 查询字段
-        List<String> FColumnList = this.getSearch();
-
-        // 排序字段
-        List<SOptions> sOptionsList = this.getSorts();
-
-        return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+    public Map<String, Object> wjData()
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("areaId", areaService.getTKVAll());
+        return map;
     }
 
-    private List<TColumn> getColumn()
+    /**
+     * 当注册中心nacos中配置为null时本地设置方可用
+     * @return
+     */
+    protected List<TColumn> getColumn()
     {
         // 字段
         List<TColumn> tColumnList = new ArrayList<>();

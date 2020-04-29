@@ -2,9 +2,10 @@ package com.cy.springcloud.controller;
 
 import com.cy.springcloud.entities.Car;
 import com.cy.springcloud.entities.common.*;
-import com.cy.springcloud.service.CarService;
-import com.cy.springcloud.service.CorrectiveService;
+import com.cy.springcloud.service.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,12 +25,23 @@ import java.util.Map;
  **/
 @RestController
 @Slf4j
-public class CarController extends BaseController
+@RefreshScope
+public class CarController extends BaseController<Car>
 {
     @Resource
     CarService carService;
     @Resource
     CorrectiveService correctiveService;
+    @Resource
+    AreaService areaService;
+    @Resource
+    ProvinceService provinceService;
+    @Resource
+    CityService cityService;
+
+    @Value("${config.columns.car}")
+    protected String configColumns;
+
 
     /**
      * 删除数据
@@ -39,8 +51,16 @@ public class CarController extends BaseController
     @PostMapping(value = "/car/fetchDelete")
     public CommonResult fetchDelete(@RequestBody(required=false) Car record)
     {
-        Integer result = carService.deleteByPrimaryKey(record.getId().intValue());
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = carService.deleteByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -51,8 +71,16 @@ public class CarController extends BaseController
     @PostMapping(value = "/car/fetchAdd")
     public CommonResult fetchAdd(@RequestBody(required=false) Car record)
     {
-        Integer result = carService.insert(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = carService.insert(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -63,8 +91,15 @@ public class CarController extends BaseController
     @PostMapping(value = "/car/fetchEdit")
     public CommonResult fetchEdit(@RequestBody(required=false) Car record)
     {
-        Integer result = carService.updateByPrimaryKey(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try {
+            result = carService.updateByPrimaryKey(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -75,16 +110,16 @@ public class CarController extends BaseController
     @PostMapping(value = "/car/fetchStatus")
     public CommonResult fetchStatus(@RequestBody(required=false) Car record)
     {
-        carService.updateStatusByPrimaryKey(record);
         try
         {
+            carService.updateStatusByPrimaryKey(record);
             record = carService.selectByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(record);
         }
         catch (Exception ex)
         {
-            System.out.println("*******::"+ex.toString());
+            return CommonResult.fail(ex);
         }
-        return CommonResult.ok(record);
     }
 
     /**
@@ -106,30 +141,25 @@ public class CarController extends BaseController
         {
             System.out.println("**********::" + ex.toString());
         }
-        TResult tResult = this.getListView(count, carList);
+        TResult tResult = this.getListView(count, carList, configColumns, this.wjData());
         return CommonResult.ok(tResult);
     }
 
     /**
-     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
-     * @param count
-     * @param results
+     * 外键数据
      * @return
      */
-    private TResult getListView(Integer count, List<Car> results) {
-        // 字段
-        List<TColumn> tColumnList = this.getColumn();
-
-        // 查询字段
-        List<String> FColumnList = this.getSearch();
-
-        // 排序字段
-        List<SOptions> sOptionsList = this.getSorts();
-
-        return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+    protected Map<String, Object> wjData()
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("areaId", areaService.getTKVAll());
+        map.put("provinceId", provinceService.getTKVAll());
+        map.put("cityId", cityService.getTKVAll());
+        map.put("correctiveId", correctiveService.getTKVAll());
+        return map;
     }
 
-    private List<TColumn> getColumn()
+    protected List<TColumn> getColumn()
     {
         // 字段
         List<TColumn> tColumnList = new ArrayList<>();
@@ -152,19 +182,19 @@ public class CarController extends BaseController
         tc.setLabel("地区");
         tc.setProp("areaId");
         tc.setType(1);
-//        tc.setOptions(carService.getTKVAll());
+        tc.setOptions(areaService.getTKVAll());
         tColumnList.add(tc);
         tc = new TColumn();
         tc.setLabel("省市");
         tc.setProp("provinceId");
         tc.setType(1);
-//        tc.setOptions(carService.getTKVAll());
+        tc.setOptions(provinceService.getTKVAll());
         tColumnList.add(tc);
         tc = new TColumn();
         tc.setLabel("城市");
         tc.setProp("cityId");
         tc.setType(1);
-//        tc.setOptions(carService.getTKVAll());
+        tc.setOptions(cityService.getTKVAll());
         tColumnList.add(tc);
         tc = new TColumn();
         tc.setLabel("是否使用");

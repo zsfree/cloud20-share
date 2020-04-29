@@ -30,6 +30,7 @@ public class Custom implements Serializable
     private Short state;
     private String createTime;
     private String updateTime;
+    private String remark;
 
     protected String words;
     protected String timestamp;

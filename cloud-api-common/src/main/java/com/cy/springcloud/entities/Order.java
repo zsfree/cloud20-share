@@ -37,7 +37,7 @@ public class Order implements Serializable
     private String destination;
     private String occurred;
     private String remark;
-    private Integer status;
+    private Short status;
     private Integer memberId;
     private String createTime;
     private String updateTime;

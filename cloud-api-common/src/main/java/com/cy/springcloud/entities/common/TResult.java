@@ -25,9 +25,15 @@ public class TResult implements Serializable
     private Object sortOptions;
     private Object tmpData;
 
+    private UploadConf uploadConf;
+
     public static TResult format(Integer count, Object results, Object tableColumn, Object filterColumn, Object sortOptions, Object tmpData)
     {
-        return new TResult(count, results, tableColumn, filterColumn, sortOptions, tmpData);
+        return new TResult(count, results, tableColumn, filterColumn, sortOptions, tmpData, null);
+    }
+    public static TResult format(Integer count, Object results, Object tableColumn, Object filterColumn, Object sortOptions, Object tmpData, UploadConf uploadConf)
+    {
+        return new TResult(count, results, tableColumn, filterColumn, sortOptions, tmpData, uploadConf);
     }
 
 }

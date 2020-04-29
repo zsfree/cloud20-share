@@ -50,20 +50,28 @@ public class OrderServiceImpl implements OrderService{
                         "remark like '%" + record.getWords() + "%'" +
                         ")";
             }
-//            if (record.getUsername() != null)
-//            {
-//                strWhere += (strWhere==""?"":" AND ") + "username like '%" + param.getFData().getUsername() + "%'";
-//            }
             if (record.getStatus() != null)
             {
                 strWhere += (strWhere==""?"":" AND ") + "status =" + param.getFData().getStatus();
             }
         }
-
-        Integer len = param.getSort().length();
-        String oneStr = param.getSort().substring(0, 1);
-        String sort = ""+param.getSort().substring(1, len) + " " + (oneStr.equals("-")?"DESC":"ASC");
-        return orderMapper.selectAll(strWhere, strCloumn, sort, (param.getPage()-1)*param.getLimit(), param.getLimit());
+        Integer len = 0;
+        String oneStr = "";
+        String sort = "";
+        if (param.getSort() != null)
+        {
+            len = param.getSort().length();
+            oneStr = param.getSort().substring(0, 1);
+            sort = " "+param.getSort().substring(1, len) + " " + (oneStr.equals("-")?"DESC":"ASC");
+        }
+        Integer offset = 0;
+        Integer limit = 10;
+        if (param.getPage() != null)
+        {
+            offset = (param.getPage()-1)*param.getLimit();
+            limit = param.getLimit();
+        }
+        return orderMapper.selectAll(strWhere, strCloumn, sort, offset, limit);
     }
 
     public int updateByPrimaryKey(Order record) {

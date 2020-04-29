@@ -3,12 +3,20 @@ package com.cy.springcloud.controller;
 import com.cy.springcloud.entities.*;
 import com.cy.springcloud.entities.common.*;
 import com.cy.springcloud.service.MemberService;
+import com.cy.springcloud.utils.MultipartFileToFileUtils;
+import com.cy.springcloud.utils.UploadUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName LoginController
@@ -19,10 +27,14 @@ import java.util.List;
  **/
 @RestController
 @Slf4j
-public class MemberController extends BaseController
+@RefreshScope
+public class MemberController extends BaseController<Member>
 {
     @Resource
     MemberService memberService;
+
+    @Value("${config.columns.member}")
+    protected String configColumns;
 
     /**
      * 删除数据
@@ -30,10 +42,18 @@ public class MemberController extends BaseController
      * @return
      */
     @PostMapping(value = "/member/fetchDelete")
-    public CommonResult fetchDelete(@RequestBody(required=false) Custom record)
+    public CommonResult fetchDelete(@RequestBody(required=false) Member record)
     {
-        Integer result = memberService.deleteByPrimaryKey(record.getId().intValue());
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = memberService.deleteByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -44,8 +64,16 @@ public class MemberController extends BaseController
     @PostMapping(value = "/member/fetchAdd")
     public CommonResult fetchAdd(@RequestBody(required=false) Member record)
     {
-        Integer result = memberService.insert(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = memberService.insert(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -56,8 +84,15 @@ public class MemberController extends BaseController
     @PostMapping(value = "/member/fetchEdit")
     public CommonResult fetchEdit(@RequestBody(required=false) Member record)
     {
-        Integer result = memberService.updateByPrimaryKey(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = memberService.updateByPrimaryKey(record);
+            return CommonResult.ok(result);
+        } catch (Exception ex)
+        {
+            return CommonResult.fail(ex.toString());
+        }
     }
 
     /**
@@ -68,10 +103,24 @@ public class MemberController extends BaseController
     @PostMapping(value = "/member/fetchStatus")
     public CommonResult fetchStatus(@RequestBody(required=false) Member record)
     {
-//        member.setUpdateTime((BigInteger) System.currentTimeMillis());
-        memberService.updateStatusByPrimaryKey(record);
-        record = memberService.selectByPrimaryKey(record.getId());
-        return CommonResult.ok(record);
+        Integer result = 0;
+        try
+        {
+            result = memberService.updateStatusByPrimaryKey(record);
+            if (result > 0)
+            {
+                record = memberService.selectByPrimaryKey(record.getId());
+                return CommonResult.ok(record);
+            }
+            else
+            {
+                return CommonResult.fail(record);
+            }
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.ok(ex);
+        }
     }
 
     /**
@@ -93,30 +142,52 @@ public class MemberController extends BaseController
         {
             System.out.println("**********::" + ex.toString());
         }
-        TResult tResult = this.getListView(count, memberList);
+        TResult tResult = this.getListView(count, memberList, configColumns, this.wjData());
         return CommonResult.ok(tResult);
     }
 
+
     /**
-     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
-     * @param count
-     * @param results
+     * 上传图片
+     * @param avatar
+     * @param key
+     * @param token
      * @return
      */
-    private TResult getListView(Integer count, List<Member> results) {
-        // 字段
-        List<TColumn> tColumnList = this.getColumn();
-
-        // 查询字段
-        List<String> FColumnList = this.getSearch();
-
-        // 排序字段
-        List<SOptions> sOptionsList = this.getSorts();
-
-        return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+    @PostMapping(value = "/member/fetchUpload")
+    public CommonResult fetchUpload(@RequestParam MultipartFile avatar,
+                                    @RequestParam(required=false) String key,
+                                    @RequestParam(required=false) String token
+    ) {
+        try {
+            //将MultipartFile 转换为File
+            File uploadImagefile = MultipartFileToFileUtils.multipartFileToFile(avatar);
+            String courseFile = "D:\\nfsdata\\www\\html5\\static\\image";
+            String filename = String.valueOf(System.currentTimeMillis());
+            UploadUtil uploadUtil = new UploadUtil();
+            String fullFileUri = uploadUtil.uploadImage(uploadImagefile, filename, courseFile);
+            System.out.println("*************::"+filename);
+            System.out.println("*************::"+fullFileUri);
+            Map map = new HashMap();
+            map.put("hash", fullFileUri);
+            map.put("key", uploadUtil.getFileType());
+            return CommonResult.ok(map);
+        } catch (Exception ex) {
+            return CommonResult.fail(ex.getMessage());
+        }
     }
 
-    private List<TColumn> getColumn()
+    /**
+     * 外键数据
+     * @return
+     */
+    protected Map<String, Object> wjData()
+    {
+//        Map<String, Object> map = new HashMap<>();
+        return null;
+    }
+
+    protected List<TColumn> getColumn()
     {
         // 字段
         List<TColumn> tColumnList = new ArrayList<>();

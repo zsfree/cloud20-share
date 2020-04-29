@@ -8,6 +8,8 @@ import com.cy.springcloud.entities.common.TColumn;
 import com.cy.springcloud.entities.common.TResult;
 import com.cy.springcloud.service.CustomService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,10 +29,15 @@ import java.util.Map;
  **/
 @RestController
 @Slf4j
-public class CustomController extends BaseController
+@RefreshScope
+public class CustomController extends BaseController<Custom>
 {
     @Resource
     CustomService customService;
+
+
+    @Value("${config.columns.custom}")
+    protected String configColumns;
 
     /**
      * 删除数据
@@ -40,8 +47,16 @@ public class CustomController extends BaseController
     @PostMapping(value = "/custom/fetchDelete")
     public CommonResult fetchDelete(@RequestBody(required=false) Custom record)
     {
-        Integer result = customService.deleteByPrimaryKey(record.getId().intValue());
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try {
+            result = customService.deleteByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
+
     }
 
     /**
@@ -52,9 +67,17 @@ public class CustomController extends BaseController
     @PostMapping(value = "/custom/fetchAdd")
     public CommonResult fetchAdd(@RequestBody(required=false) Custom record)
     {
-        System.out.println("********"+record);
-        Integer result = customService.insert(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = customService.insert(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            System.out.println("********"+ex);
+            return CommonResult.fail(ex.getMessage());
+        }
     }
 
     /**
@@ -65,8 +88,17 @@ public class CustomController extends BaseController
     @PostMapping(value = "/custom/fetchEdit")
     public CommonResult fetchEdit(@RequestBody(required=false) Custom record)
     {
-        Integer result = customService.updateByPrimaryKey(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = customService.updateByPrimaryKey(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            System.out.println("********"+ex);
+            return CommonResult.fail(ex.getMessage());
+        }
     }
 
     /**
@@ -77,18 +109,17 @@ public class CustomController extends BaseController
     @PostMapping(value = "/custom/fetchStatus")
     public CommonResult fetchStatus(@RequestBody(required=false) Custom record)
     {
-        System.out.println(record);
-        customService.updateStatusByPrimaryKey(record);
         try
         {
+            customService.updateStatusByPrimaryKey(record);
             record = customService.selectByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(record);
         }
         catch (Exception ex)
         {
             System.out.println("*******::"+ex.toString());
+            return CommonResult.fail(ex);
         }
-//
-        return CommonResult.ok(record);
     }
 
     /**
@@ -110,34 +141,25 @@ public class CustomController extends BaseController
         {
             System.out.println("**********::" + ex.toString());
         }
-        TResult tResult = this.getListView(count, customList);
+        TResult tResult = this.getListView(count, customList, configColumns, this.wjData());
         return CommonResult.ok(tResult);
     }
 
     /**
-     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
-     * @param count
-     * @param results
+     * 外键数据
      * @return
      */
-    private TResult getListView(Integer count, List<Custom> results) {
-        // 字段
-        List<TColumn> tColumnList = this.getColumn();
-
-        // 查询字段
-        List<String> FColumnList = this.getSearch();
-
-        // 排序字段
-        List<SOptions> sOptionsList = this.getSorts();
-
-        return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+    protected Map<String, Object> wjData()
+    {
+//        Map<String, Object> map = new HashMap<>();
+        return null;
     }
 
     /**
      * 构建字段栏目
      * @return
      */
-    private List<TColumn> getColumn()
+    protected List<TColumn> getColumn()
     {
         // 字段
         List<TColumn> tColumnList = new ArrayList<>();

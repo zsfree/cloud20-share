@@ -9,6 +9,8 @@ import com.cy.springcloud.entities.common.TColumn;
 import com.cy.springcloud.entities.common.TResult;
 import com.cy.springcloud.service.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +30,8 @@ import java.util.Map;
  **/
 @RestController
 @Slf4j
-public class PostsaleController extends BaseController
+@RefreshScope
+public class PostsaleController extends BaseController<Postsale>
 {
     @Resource
     PostsaleService postsaleService;
@@ -40,6 +43,9 @@ public class PostsaleController extends BaseController
     CarService carService;
     @Resource
     OrderService orderService;
+
+    @Value("${config.columns.postsale}")
+    protected String configColumns;
 
     /**
      * 删除数据
@@ -61,8 +67,16 @@ public class PostsaleController extends BaseController
     @PostMapping(value = "/postsale/fetchAdd")
     public CommonResult fetchAdd(@RequestBody(required=false) Postsale record)
     {
-        Integer result = postsaleService.insert(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = postsaleService.insert(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -73,8 +87,16 @@ public class PostsaleController extends BaseController
     @PostMapping(value = "/postsale/fetchEdit")
     public CommonResult fetchEdit(@RequestBody(required=false) Postsale record)
     {
-        Integer result = postsaleService.updateByPrimaryKey(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try {
+            result = postsaleService.updateByPrimaryKey(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
+
     }
 
     /**
@@ -85,16 +107,17 @@ public class PostsaleController extends BaseController
     @PostMapping(value = "/postsale/fetchStatus")
     public CommonResult fetchStatus(@RequestBody(required=false) Postsale record)
     {
-        postsaleService.updateStatusByPrimaryKey(record);
         try
         {
+            postsaleService.updateStatusByPrimaryKey(record);
             record = postsaleService.selectByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(record);
         }
         catch (Exception ex)
         {
             System.out.println("*******::"+ex.toString());
+            return CommonResult.ok(ex);
         }
-        return CommonResult.ok(record);
     }
 
     /**
@@ -116,30 +139,25 @@ public class PostsaleController extends BaseController
         {
             System.out.println("**********::" + ex.toString());
         }
-        TResult tResult = this.getListView(count, postsaleList);
+        TResult tResult = this.getListView(count, postsaleList, configColumns, this.wjData());
         return CommonResult.ok(tResult);
     }
 
     /**
-     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
-     * @param count
-     * @param results
+     * 外键数据
      * @return
      */
-    private TResult getListView(Integer count, List<Postsale> results) {
-        // 字段
-        List<TColumn> tColumnList = this.getColumn();
-
-        // 查询字段
-        List<String> FColumnList = this.getSearch();
-
-        // 排序字段
-        List<SOptions> sOptionsList = this.getSorts();
-
-        return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+    protected Map<String, Object> wjData()
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("customId", customService.getTKVAll());
+        map.put("carId", carService.getTKVAll());
+        map.put("orderId", orderService.getTKVAll());
+        map.put("memberId", memberService.getTKVAll());
+        return map;
     }
 
-    private List<TColumn> getColumn()
+    protected List<TColumn> getColumn()
     {
         // 字段
         List<TColumn> tColumnList = new ArrayList<>();

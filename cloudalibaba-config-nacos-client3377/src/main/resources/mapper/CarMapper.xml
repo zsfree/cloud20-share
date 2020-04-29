@@ -39,17 +39,17 @@
     -->
     insert into api_car (
     car_serial_num, car_batch, car_type, area_id, province_id,
-    city_id, is_use, is_hitch, hitch_id, use_time, location, member_id, remark,
-    status, create_time, update_time
+    city_id, is_use, is_hitch, hitch_id, use_time, member_id, location, remark,
+    status, create_time
       )
     values (#{carSerialNum,jdbcType=VARCHAR}, #{carBatch,jdbcType=VARCHAR},
         #{carType,jdbcType=VARCHAR}, #{areaId,jdbcType=INTEGER},
         #{provinceId,jdbcType=INTEGER}, #{cityId,jdbcType=INTEGER},
         #{isUse,jdbcType=INTEGER}, #{isHitch,jdbcType=INTEGER},
         #{hitchId,jdbcType=INTEGER}, #{useTime,jdbcType=VARCHAR},
-        #{memberId,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR},
-        #{location,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
-        #{createTime,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+        #{memberId,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR},
+        #{remark,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER},
+        #{createTime,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateByPrimaryKey" parameterType="com.cy.springcloud.entities.Car">
@@ -100,7 +100,10 @@
     <if test="strWhere !=''">
       where ${strWhere}
     </if>
-    ORDER BY ${sort} LIMIT #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+    <if test="sort !=''">
+      ORDER BY ${sort}
+    </if>
+    LIMIT #{offset,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
   </select>
   <select id="count" resultType="java.lang.Integer">
     <!--

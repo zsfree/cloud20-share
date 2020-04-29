@@ -1,18 +1,23 @@
 package com.cy.springcloud.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cy.springcloud.entities.Area;
 import com.cy.springcloud.entities.common.*;
 import com.cy.springcloud.service.CarService;
 import com.cy.springcloud.service.AreaService;
 import com.cy.springcloud.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName AreaController
@@ -23,10 +28,14 @@ import java.util.List;
  **/
 @RestController
 @Slf4j
-public class AreaController extends BaseController
+@RefreshScope   // 该注解保证nacos能够执行动态刷新
+public class AreaController extends BaseController<Area>
 {
     @Resource
-    AreaService areaService;
+    private AreaService areaService;
+
+    @Value("${config.columns.area}")
+    protected String configColumns;
 
     /**
      * 删除数据
@@ -36,8 +45,16 @@ public class AreaController extends BaseController
     @PostMapping(value = "/area/fetchDelete")
     public CommonResult fetchDelete(@RequestBody(required=false) Area record)
     {
-        Integer result = areaService.deleteByPrimaryKey(record.getId().intValue());
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = areaService.deleteByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -48,8 +65,16 @@ public class AreaController extends BaseController
     @PostMapping(value = "/area/fetchAdd")
     public CommonResult fetchAdd(@RequestBody(required=false) Area record)
     {
-        Integer result = areaService.insert(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = areaService.insert(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -60,8 +85,15 @@ public class AreaController extends BaseController
     @PostMapping(value = "/area/fetchEdit")
     public CommonResult fetchEdit(@RequestBody(required=false) Area record)
     {
-        Integer result = areaService.updateByPrimaryKey(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try {
+            result = areaService.updateByPrimaryKey(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.ok(ex);
+        }
     }
 
     /**
@@ -72,16 +104,24 @@ public class AreaController extends BaseController
     @PostMapping(value = "/area/fetchStatus")
     public CommonResult fetchStatus(@RequestBody(required=false) Area record)
     {
-        areaService.updateStatusByPrimaryKey(record);
+        Integer result = 0;
         try
         {
-            record = areaService.selectByPrimaryKey(record.getId().intValue());
+            result = areaService.updateStatusByPrimaryKey(record);
+            if (result > 0)
+            {
+                record = areaService.selectByPrimaryKey(record.getId().intValue());
+                return CommonResult.ok(record);
+            }
+            else
+            {
+                return CommonResult.fail(record);
+            }
         }
         catch (Exception ex)
         {
-            System.out.println("*******::"+ex.toString());
+            return CommonResult.ok(ex);
         }
-        return CommonResult.ok(record);
     }
 
     /**
@@ -104,34 +144,24 @@ public class AreaController extends BaseController
         {
             System.out.println("**********::" + ex.toString());
         }
-        TResult tResult = this.getListView(count, areaList);
+        TResult tResult = this.getListView(count, areaList, configColumns, this.wjData());
         return CommonResult.ok(tResult);
     }
 
     /**
-     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
-     * @param count
-     * @param results
+     * 外键数据
      * @return
      */
-    private TResult getListView(Integer count, List<Area> results) {
-        // 字段
-        List<TColumn> tColumnList = this.getColumn();
-
-        // 查询字段
-        List<String> FColumnList = this.getSearch();
-
-        // 排序字段
-        List<SOptions> sOptionsList = this.getSorts();
-
-        return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+    public Map<String, Object> wjData()
+    {
+//        Map<String, Object> map = new HashMap<>();
+        return null;
     }
-
     /**
      * 构建字段栏目,   type 决定了表单组件中栏目的类型 0 input， 1 select, 2 radio, 3 checkbox, 4查找带回 5时间控价 等
      * @return
      */
-    private List<TColumn> getColumn()
+    protected List<TColumn> getColumn()
     {
         // 字段
         List<TColumn> tColumnList = new ArrayList<>();

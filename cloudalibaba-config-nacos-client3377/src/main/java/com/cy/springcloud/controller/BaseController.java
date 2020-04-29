@@ -1,11 +1,15 @@
 package com.cy.springcloud.controller;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.TypeReference;
 import com.cy.springcloud.entities.common.SOptions;
+import com.cy.springcloud.entities.common.TColumn;
+import com.cy.springcloud.entities.common.TResult;
+import com.cy.springcloud.utils.TransBeamMap;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 
-import javax.servlet.*;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -15,35 +19,7 @@ import java.util.*;
  * @Date 2020/4/11 16:12
  * @Version 1.0
  **/
-
-public class BaseController<T> implements Filter {
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-    }
-
-    @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletResponse response = (HttpServletResponse) servletResponse;
-        response.setHeader("Access-Control-Allow-Origin", "*"); //解决跨域访问报错
-        response.setHeader("Access-Control-Allow-Credentials", "true");
-        response.setHeader("Access-Control-Allow-Methods", "OPTIONS, HEAD, PATCH, POST, PUT, GET, OPTIONS, DELETE");
-        response.setHeader("Access-Control-Max-Age", "3600"); //设置过期时间
-        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // 支持HTTP 1.1.
-        response.setHeader("Pragma", "no-cache"); // 支持HTTP 1.0. response.setHeader("Expires", "0");
-
-        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, " +
-                "WG-App-Version, WG-Device-Id, WG-Network-Type, WG-Vendor, WG-OS-Type, WG-OS-Version, WG-Device-Model, WG-CPU, WG-Sid, WG-App-Id, WG-Token, X-Token, client_id, uuid, Authorization");
-
-        System.out.println(servletRequest.toString());
-        System.out.println(servletResponse.toString());
-        filterChain.doFilter(servletRequest, servletResponse);
-//        System.out.println("****************");
-    }
-
-    @Override
-    public void destroy() {
-    }
+public class BaseController<T> extends FilterController {
 
     /**
      * 获取精确到秒的时间戳
@@ -153,5 +129,77 @@ public class BaseController<T> implements Filter {
         stringMap.put("prop", "0");
         optionsList.add(stringMap);
         return optionsList;
+    }
+
+    /**
+     * 获取栏目字段信息
+     * @return
+     */
+    protected List<TColumn> getColumn()
+    {
+        // 字段
+        List<TColumn> tColumnList = new ArrayList<>();
+        return tColumnList;
+    }
+
+
+    /**
+     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
+     * @param count
+     * @param results
+     * @return
+     */
+    protected TResult getListView(Integer count, List<T> results, String configColumns, Map<String, Object> wjData) {
+
+        TResult jsonObject;
+        try {
+            jsonObject = JSONObject.parseObject(configColumns, TResult.class);
+        } catch (Exception ex){
+//            System.out.println("***2222*******************************::"+ex.toString());
+            jsonObject = null;
+        }
+        if (jsonObject == null)
+        {
+            // 字段
+            List<TColumn> tColumnList = this.getColumn();
+
+            // 查询字段
+            List<String> FColumnList = this.getSearch();
+
+            // 排序字段
+            List<SOptions> sOptionsList = this.getSorts();
+
+            return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+        }
+        System.out.println("***111*******************************::"+jsonObject);
+        jsonObject.setCount(count);
+        jsonObject.setResults(results);
+
+        if (wjData != null)
+        {
+            // 字段
+            List<TColumn> tColumnList = JSON.parseObject(jsonObject.getTableColumn().toString(), new TypeReference<List<TColumn>>(){});
+            int i = 0;
+            for (TColumn obj:tColumnList) {
+                int len = obj.getProp().length();
+                if (obj.getType() == 1 && obj.getProp().substring(len-2, len).equals("Id"))
+                {
+                    obj.setOptions(wjData.get(obj.getProp()));
+                    tColumnList.set(i, obj);
+                    jsonObject.setTableColumn(tColumnList);
+                }
+                i ++;
+            }
+        }
+        return jsonObject;
+    }
+
+    /**
+     * 外键数据
+     * @return
+     */
+    protected Map<String, Object> wjData()
+    {
+        return null;
     }
 }

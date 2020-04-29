@@ -7,6 +7,8 @@ import com.cy.springcloud.service.CarService;
 import com.cy.springcloud.service.MemberService;
 import com.cy.springcloud.service.CorrectiveService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +28,8 @@ import java.util.Map;
  **/
 @RestController
 @Slf4j
-public class CorrectiveController extends BaseController
+@RefreshScope
+public class CorrectiveController extends BaseController<Corrective>
 {
     @Resource
     CorrectiveService correctiveService;
@@ -34,6 +37,9 @@ public class CorrectiveController extends BaseController
     MemberService memberService;
     @Resource
     CarService carService;
+
+    @Value("${config.columns.corrective}")
+    protected String configColumns;
 
     /**
      * 删除数据
@@ -43,8 +49,15 @@ public class CorrectiveController extends BaseController
     @PostMapping(value = "/corrective/fetchDelete")
     public CommonResult fetchDelete(@RequestBody(required=false) Corrective record)
     {
-        Integer result = correctiveService.deleteByPrimaryKey(record.getId().intValue());
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try {
+            result = correctiveService.deleteByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.ok(ex);
+        }
     }
 
     /**
@@ -55,8 +68,16 @@ public class CorrectiveController extends BaseController
     @PostMapping(value = "/corrective/fetchAdd")
     public CommonResult fetchAdd(@RequestBody(required=false) Corrective record)
     {
-        Integer result = correctiveService.insert(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = correctiveService.insert(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -67,8 +88,16 @@ public class CorrectiveController extends BaseController
     @PostMapping(value = "/corrective/fetchEdit")
     public CommonResult fetchEdit(@RequestBody(required=false) Corrective record)
     {
-        Integer result = correctiveService.updateByPrimaryKey(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = correctiveService.updateByPrimaryKey(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.ok(ex);
+        }
     }
 
     /**
@@ -79,16 +108,16 @@ public class CorrectiveController extends BaseController
     @PostMapping(value = "/corrective/fetchStatus")
     public CommonResult fetchStatus(@RequestBody(required=false) Corrective record)
     {
-        correctiveService.updateStatusByPrimaryKey(record);
         try
         {
+            correctiveService.updateStatusByPrimaryKey(record);
             record = correctiveService.selectByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(record);
         }
         catch (Exception ex)
         {
-            System.out.println("*******::"+ex.toString());
+            return CommonResult.ok(ex);
         }
-        return CommonResult.ok(record);
     }
 
     /**
@@ -110,30 +139,23 @@ public class CorrectiveController extends BaseController
         {
             System.out.println("**********::" + ex.toString());
         }
-        TResult tResult = this.getListView(count, correctiveList);
+        TResult tResult = this.getListView(count, correctiveList, configColumns, this.wjData());
         return CommonResult.ok(tResult);
     }
 
     /**
-     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
-     * @param count
-     * @param results
+     * 外键数据
      * @return
      */
-    private TResult getListView(Integer count, List<Corrective> results) {
-        // 字段
-        List<TColumn> tColumnList = this.getColumn();
-
-        // 查询字段
-        List<String> FColumnList = this.getSearch();
-
-        // 排序字段
-        List<SOptions> sOptionsList = this.getSorts();
-
-        return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+    protected Map<String, Object> wjData()
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("carId", carService.getTKVAll());
+        map.put("memberId", memberService.getTKVAll());
+        return map;
     }
 
-    private List<TColumn> getColumn()
+    protected List<TColumn> getColumn()
     {
         // 字段
         List<TColumn> tColumnList = new ArrayList<>();

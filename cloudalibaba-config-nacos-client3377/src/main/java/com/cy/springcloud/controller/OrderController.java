@@ -6,18 +6,19 @@ import com.cy.springcloud.entities.common.Param;
 import com.cy.springcloud.entities.common.SOptions;
 import com.cy.springcloud.entities.common.TColumn;
 import com.cy.springcloud.entities.common.TResult;
-import com.cy.springcloud.service.CarService;
-import com.cy.springcloud.service.CityService;
-import com.cy.springcloud.service.CustomService;
-import com.cy.springcloud.service.OrderService;
+import com.cy.springcloud.service.*;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName LoginController
@@ -28,7 +29,8 @@ import java.util.List;
  **/
 @RestController
 @Slf4j
-public class OrderController extends BaseController
+@RefreshScope
+public class OrderController extends BaseController<Order>
 {
     @Resource
     OrderService orderService;
@@ -38,6 +40,11 @@ public class OrderController extends BaseController
     CarService carService;
     @Resource
     CityService cityService;
+    @Resource
+    MemberService memberService;
+
+    @Value("${config.columns.order}")
+    protected String configColumns;
 
     /**
      * 删除数据
@@ -47,8 +54,16 @@ public class OrderController extends BaseController
     @PostMapping(value = "/order/fetchDelete")
     public CommonResult fetchDelete(@RequestBody(required=false) Order record)
     {
-        Integer result = orderService.deleteByPrimaryKey(record.getId().intValue());
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = orderService.deleteByPrimaryKey(record.getId().intValue());
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -59,8 +74,16 @@ public class OrderController extends BaseController
     @PostMapping(value = "/order/fetchAdd")
     public CommonResult fetchAdd(@RequestBody(required=false) Order record)
     {
-        Integer result = orderService.insert(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try
+        {
+            result = orderService.insert(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.fail(ex);
+        }
     }
 
     /**
@@ -71,8 +94,15 @@ public class OrderController extends BaseController
     @PostMapping(value = "/order/fetchEdit")
     public CommonResult fetchEdit(@RequestBody(required=false) Order record)
     {
-        Integer result = orderService.updateByPrimaryKey(record);
-        return CommonResult.ok(result);
+        Integer result = 0;
+        try {
+            result = orderService.updateByPrimaryKey(record);
+            return CommonResult.ok(result);
+        }
+        catch (Exception ex)
+        {
+            return CommonResult.ok(ex);
+        }
     }
 
     /**
@@ -83,16 +113,24 @@ public class OrderController extends BaseController
     @PostMapping(value = "/order/fetchStatus")
     public CommonResult fetchStatus(@RequestBody(required=false) Order record)
     {
-        orderService.updateStatusByPrimaryKey(record);
+        Integer result = 0;
         try
         {
-            record = orderService.selectByPrimaryKey(record.getId().intValue());
+            result = orderService.updateStatusByPrimaryKey(record);
+            if (result > 0)
+            {
+                record = orderService.selectByPrimaryKey(record.getId().intValue());
+                return CommonResult.ok(record);
+            }
+            else
+            {
+                return CommonResult.fail(record);
+            }
         }
         catch (Exception ex)
         {
-            System.out.println("*******::"+ex.toString());
+            return CommonResult.ok(ex);
         }
-        return CommonResult.ok(record);
     }
 
     /**
@@ -114,30 +152,25 @@ public class OrderController extends BaseController
         {
             System.out.println("**********::" + ex.toString());
         }
-        TResult tResult = this.getListView(count, memberList);
+        TResult tResult = this.getListView(count, memberList, configColumns, this.wjData());
         return CommonResult.ok(tResult);
     }
 
     /**
-     * 获取界面元素，如列表栏目，数据，分页，过滤查询等
-     * @param count
-     * @param results
+     * 外键数据
      * @return
      */
-    private TResult getListView(Integer count, List<Order> results) {
-        // 字段
-        List<TColumn> tColumnList = this.getColumn();
-
-        // 查询字段
-        List<String> FColumnList = this.getSearch();
-
-        // 排序字段
-        List<SOptions> sOptionsList = this.getSorts();
-
-        return TResult.format(count, results, tColumnList, FColumnList, sOptionsList, this.getTmpData());
+    protected Map<String, Object> wjData()
+    {
+        Map<String, Object> map = new HashMap<>();
+        map.put("customId", customService.getTKVAll());
+        map.put("carId", carService.getTKVAll());
+        map.put("cityId", cityService.getTKVAll());
+        map.put("memberId", memberService.getTKVAll());
+        return map;
     }
 
-    private List<TColumn> getColumn()
+    protected List<TColumn> getColumn()
     {
         // 字段
         List<TColumn> tColumnList = new ArrayList<>();
@@ -215,6 +248,11 @@ public class OrderController extends BaseController
         tc.setType(0);
         tColumnList.add(tc);
         tc = new TColumn();
+        tc.setLabel("员工");
+        tc.setProp("memberId");
+        tc.setType(1);
+        tc.setOptions(memberService.getTKVAll());
+        tColumnList.add(tc);
         tc.setLabel("状态");
         tc.setProp("status");
         tc.setType(1);
