@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4de94c39-b026-40b7-9884-cba780b319be" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Area.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Base.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Car.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/City.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Corrective.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Custom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Ips.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Member.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Order.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Postsale.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Province.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/common/CommonResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/common/ConfigConstant.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/common/Param.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/common/SOptions.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/common/TColumn.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/common/TResult.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/entities/common/UploadConf.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/utils/AccountUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/utils/Files.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/utils/MD5Util.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/utils/MultipartFileToFileUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/utils/RandomUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/utils/TransBeamMap.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/src/main/java/com/cy/springcloud/utils/UploadUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Area.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Base.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Car.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/City.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Corrective.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Custom.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Ips.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Member.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Order.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Postsale.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Province.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/common/CommonResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/common/ConfigConstant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/common/Param.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/common/SOptions.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/common/TColumn.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/common/TResult.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/entities/common/UploadConf.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/utils/AccountUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/utils/Files.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/utils/MD5Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/utils/MultipartFileToFileUtils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/utils/RandomUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/utils/TransBeamMap.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-api-common/target/classes/com/cy/springcloud/utils/UploadUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/cloud-share-car-client4000.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/src/main/java/com/cy/springcloud/CloudUploadClientMain4000.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/src/main/java/com/cy/springcloud/controller/test/ConfigClientController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/src/main/java/com/cy/springcloud/controller/test/FlowLimitController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/target/classes/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/target/classes/com/cy/springcloud/CloudUploadClientMain4000.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/target/classes/com/cy/springcloud/controller/test/ConfigClientController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud-share-car-client4000/target/classes/com/cy/springcloud/controller/test/FlowLimitController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/cloudalibaba-config-nacos-client3377.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/NacosConfigClientMain3377.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/AreaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/BaseController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/CarController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/CityController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/CorrectiveController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/CustomController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/FilterController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/MemberController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/OrderController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/PostsaleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/ProvinceController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/test/ConfigClientController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/controller/test/FlowLimitController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/AreaMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/BaseMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/CarMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/CityMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/CorrectiveMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/CustomMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/MemberMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/OrderMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/PostsaleMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/dao/ProvinceMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/AreaService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/BaseService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/CarService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/CityService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/CorrectiveService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/CustomService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/MemberService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/OrderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/PostsaleService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/ProvinceService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/AreaServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/BaseServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/CarServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/CityServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/CorrectiveServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/CustomServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/MemberServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/OrderServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/PostsaleServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/java/com/cy/springcloud/service/impl/ProvinceServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/AreaMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/CarMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/CityMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/CorrectiveMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/CustomMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/MemberMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/OrderMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/PostsaleMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/main/resources/mapper/ProvinceMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestArea.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestCar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestCity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestCorrective.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestCustom.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestMember.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestOrder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestPostsale.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/src/test/java/com/cy/springcloud/junit/TestProvince.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/bootstrap.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/NacosConfigClientMain3377.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/AreaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/BaseController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/BaseController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/CarController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/CityController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/CorrectiveController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/CustomController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/FilterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/MemberController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/OrderController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/PostsaleController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/ProvinceController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/test/ConfigClientController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/controller/test/FlowLimitController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/AreaMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/BaseMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/CarMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/CityMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/CorrectiveMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/CustomMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/MemberMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/OrderMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/PostsaleMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/dao/ProvinceMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/AreaService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/BaseService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/CarService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/CityService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/CorrectiveService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/CustomService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/MemberService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/OrderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/PostsaleService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/ProvinceService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/AreaServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/BaseServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/CarServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/CityServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/CorrectiveServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/CustomServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/MemberServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/OrderServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/PostsaleServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/com/cy/springcloud/service/impl/ProvinceServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/AreaMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/CarMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/CityMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/CorrectiveMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/CustomMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/MemberMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/OrderMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/PostsaleMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/classes/mapper/ProvinceMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestArea$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestArea.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestCar$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestCar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestCity$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestCity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestCorrective$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestCorrective.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestCustom$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestCustom.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestMember$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestMember.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestOrder$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestOrder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestPostsale$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestPostsale.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestProvince$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloudalibaba-config-nacos-client3377/target/test-classes/com/cy/springcloud/junit/TestProvince.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="248QbxW5dYUcp1yyVWZfwHaskx2" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/service-gateway/src/main" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="spring" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="ReactorSettings">
+    <option name="notificationShown" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\work\git_cy_pro\service-gateway\src\main" />
+      <recent name="D:\work\git_cy_pro\service-config\src\main" />
+      <recent name="D:\work\git_cy_pro\service-eureka\src\main" />
+      <recent name="D:\work\git_cy_pro\service-common\src\main" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.GatewayApplication">
+    <configuration name="CloudUploadClientMain4000" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cloud-share-car-client4000" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cy.springcloud.CloudUploadClientMain4000" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CommonApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="service-common" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.xel.cloud.start.common.CommonApplication" />
+      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=dev" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ConfigApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="service-config" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xel.cloud.start.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.xel.cloud.start.ConfigApplication" />
+      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=dev" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EurekaApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true">
+      <module name="service-eureka" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xel.cloud.start.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.xel.cloud.start.EurekaApplication" />
+      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=dev" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="service-gateway" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.xel.cloud.start.gateway.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.xel.cloud.start.gateway.GatewayApplication" />
+      <option name="VM_PARAMETERS" value="-Dspring.profiles.active=dev" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NacosConfigClientMain3377" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="cloudalibaba-config-nacos-client3377" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.cy.springcloud.NacosConfigClientMain3377" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.CommonApplication" />
+      <item itemvalue="Spring Boot.EurekaApplication" />
+      <item itemvalue="Spring Boot.GatewayApplication" />
+      <item itemvalue="Spring Boot.ConfigApplication" />
+      <item itemvalue="Spring Boot.NacosConfigClientMain3377" />
+      <item itemvalue="Spring Boot.CloudUploadClientMain4000" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.EurekaApplication" />
+        <item itemvalue="Spring Boot.ConfigApplication" />
+        <item itemvalue="Spring Boot.GatewayApplication" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4de94c39-b026-40b7-9884-cba780b319be" name="Changes" comment="" />
+      <created>1643009811007</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1643009811007</updated>
+      <workItem from="1643009812283" duration="7311000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
